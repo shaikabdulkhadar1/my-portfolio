@@ -9,13 +9,13 @@ const articles = [
   },
   {
     title: "Create a Landing Page That Performs Great",
-    excerpt: "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page. Landing pages are standalone websites used to generate leads or sales.",
+    excerpt: "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page.",
     date: "Mar 15, 2022",
     read: "6min read",
   },
   {
     title: "How Can Designers Prepare for the Future?",
-    excerpt: "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page. Landing pages are standalone websites used to generate leads or sales.",
+    excerpt: "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page.",
     date: "Feb 28, 2022",
     read: "6min read",
   },
@@ -23,39 +23,45 @@ const articles = [
 
 const ThoughtsSection = () => {
   return (
-    <section id="thoughts" className="py-20">
-      <div className="container">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-black mb-12 tracking-tight"
-        >
-          DESIGN <span className="text-muted-foreground italic font-light">THOUGHTS</span>
-        </motion.h2>
+    <section id="thoughts" className="py-20 px-8 lg:px-12">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-5xl md:text-7xl font-black mb-4 tracking-tight"
+      >
+        DESIGN
+      </motion.h2>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-5xl md:text-7xl font-light italic text-muted-foreground mb-14 tracking-tight"
+      >
+        THOUGHTS
+      </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {articles.map((article, i) => (
-            <motion.div
-              key={article.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.5 }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 transition-all duration-300 cursor-pointer flex flex-col"
-            >
-              <h3 className="font-bold text-lg mb-3 leading-snug">{article.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed flex-1">{article.excerpt}</p>
-              <div className="flex items-center gap-3 mt-5 text-xs text-muted-foreground">
-                <span>{article.date}</span>
-                <span>·</span>
-                <span>{article.read}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+      <div className="flex flex-col gap-5">
+        {articles.map((article, i) => (
+          <motion.div
+            key={article.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.12, duration: 0.5 }}
+            className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 transition-all duration-300 cursor-pointer"
+          >
+            <h3 className="font-bold text-lg mb-3 leading-snug">{article.title}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">{article.excerpt}</p>
+            <div className="flex items-center gap-3 mt-4 text-xs text-muted-foreground">
+              <span>{article.date}</span>
+              <span>·</span>
+              <span>{article.read}</span>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

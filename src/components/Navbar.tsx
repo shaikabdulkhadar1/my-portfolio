@@ -14,9 +14,11 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const container = document.getElementById("scroll-container");
+    if (!container) return;
+    const handleScroll = () => setScrolled(container.scrollTop > 50);
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -24,7 +26,7 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-2 py-2 rounded-full border border-border transition-all duration-300 ${
+      className={`sticky top-6 z-50 flex items-center gap-1 px-2 py-2 rounded-full border border-border transition-all duration-300 w-fit mx-auto ${
         scrolled ? "bg-card/90 backdrop-blur-xl" : "bg-card/70 backdrop-blur-md"
       }`}
     >
