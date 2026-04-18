@@ -15,8 +15,8 @@ const fadeUp = {
 };
 
 const stats = [
-  { number: 12, label: "YEARS OF\nEXPERIENCE" },
-  { number: 46, label: "PROJECTS\nCOMPLETED" },
+  { number: 5, label: "YEARS OF\nEXPERIENCE" },
+  { number: 15, label: "PROJECTS\nCOMPLETED" },
   { number: 20, label: "WORLDWIDE\nCLIENTS" },
 ];
 

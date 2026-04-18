@@ -38,7 +38,7 @@ const ProfileCard = () => {
         <div className="relative w-[300px] h-[300px] rounded-2xl overflow-hidden mb-6 z-10">
           <div className="absolute inset-0 bg-[hsl(18,78%,57%)]" />
           <img
-            src="/public/photo.png"
+            src="/photo.png"
             alt="Profile Picture"
             className="relative w-full h-full object-cover object-top"
             style={{ mixBlendMode: "multiply" }}
