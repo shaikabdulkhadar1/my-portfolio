@@ -1,68 +1,115 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const INITIAL_COUNT = 2;
 
 const articles = [
   {
-    title: "Starting and Growing a Career in Web Design",
-    excerpt: "As the internet continues to develop and grow exponentially, jobs related to the industry do too, particularly those that relate to web design and development.",
-    date: "Apr 8, 2022",
-    read: "6min read",
+    title: "The Catholic University of America",
+    subtitle: "MS in Computer Science",
+    excerpt:
+      "Completed my Master’s focusing on full-stack development, AI, and blockchain applications in public policy and automation.",
+    date: "2025",
+    read: "3.8 GPA",
   },
   {
-    title: "Create a Landing Page That Performs Great",
-    excerpt: "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page.",
-    date: "Mar 15, 2022",
-    read: "6min read",
+    title: "Lords Institute of Engineering and Technology, JNTUH",
+    subtitle: "B.Tech in Computer Science and Engineering",
+    excerpt:
+      "Completed a comprehensive undergraduate program in Computer Science, gaining foundational knowledge in programming, algorithms, and system design.",
+    date: "2021",
+    read: "7.72 GPA",
   },
   {
-    title: "How Can Designers Prepare for the Future?",
-    excerpt: "Whether you work in marketing, sales, or product design, you understand the importance of a quality landing page.",
-    date: "Feb 28, 2022",
-    read: "6min read",
+    title: "OSM Junior College",
+    subtitle: "Intermediate",
+    excerpt: "Specialized in Maths, Physics, and Chemistry",
+    date: "2017",
+    read: "7.7 GPA",
+  },
+  {
+    title: "Hyderabad Islamic School",
+    subtitle: "Secondary School Certificate",
+    excerpt:
+      "Completed my high school with a strong foundation in English, Maths, and Science",
+    date: "2015",
+    read: "8.8 GPA",
   },
 ];
 
 const ThoughtsSection = () => {
+  const [showAll, setShowAll] = useState(false);
+  const visibleArticles = showAll ? articles : articles.slice(0, INITIAL_COUNT);
+
   return (
-    <section id="thoughts" className="py-20 px-8 lg:px-12">
+    <section id="thoughts" className="py-20 pr-8 pl-0 lg:pr-10">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-5xl md:text-7xl font-black mb-4 tracking-tight"
+        className="text-6xl md:text-8xl lg:text-[6.5rem] font-black leading-[0.95] tracking-tighter"
       >
-        DESIGN
+        EDUCATION
       </motion.h2>
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-5xl md:text-7xl font-light italic text-muted-foreground mb-14 tracking-tight"
+        className="text-6xl md:text-7xl lg:text-[100px] font-black leading-[0.95] tracking-tighter mb-14"
+        style={{ color: "rgba(182, 180, 189, 0.2)" }}
       >
-        THOUGHTS
+        BACKGROUND
       </motion.h2>
 
-      <div className="flex flex-col gap-5">
-        {articles.map((article, i) => (
+      <div className="flex flex-col gap-1">
+        <AnimatePresence initial={false}>
+        {visibleArticles.map((article, i) => (
           <motion.div
             key={article.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.12, duration: 0.5 }}
-            className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 transition-all duration-300 cursor-pointer"
+            className="group cursor-pointer"
           >
-            <h3 className="font-bold text-lg mb-3 leading-snug">{article.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{article.excerpt}</p>
-            <div className="flex items-center gap-3 mt-4 text-xs text-muted-foreground">
-              <span>{article.date}</span>
-              <span>·</span>
-              <span>{article.read}</span>
+            <div className="rounded-2xl px-6 py-7 md:px-8 md:py-8 transition-colors duration-300 ease-out hover:bg-card-hover">
+              <h3 className="font-bold text-lg mb-3 leading-snug">
+                {article.title}
+              </h3>
+              <h4 className="font-bold text-md mb-3 text-muted-foreground italic">
+                {article.subtitle}
+              </h4>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {article.excerpt}
+              </p>
+              <div className="flex items-center gap-3 mt-4 text-xs text-muted-foreground">
+                <span>{article.date}</span>
+                <span>·</span>
+                <span>{article.read}</span>
+              </div>
             </div>
           </motion.div>
         ))}
+        </AnimatePresence>
       </div>
+
+      {articles.length > INITIAL_COUNT && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-6 flex justify-center"
+        >
+          <button
+            onClick={() => setShowAll((prev) => !prev)}
+            className="px-6 py-3 rounded-full border border-muted-foreground/20 text-sm font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors duration-300"
+          >
+            {showAll ? "Show Less" : "Show More"}
+          </button>
+        </motion.div>
+      )}
     </section>
   );
 };

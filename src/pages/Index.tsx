@@ -5,32 +5,35 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ToolsSection from "@/components/ToolsSection";
 import ThoughtsSection from "@/components/ThoughtsSection";
 import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
 import ProfileCard from "@/components/ProfileCard";
 import FloatingButtons from "@/components/FloatingButtons";
 
 const Index = () => {
   return (
     <div className="h-screen bg-background text-foreground flex overflow-hidden relative">
+      {/* Navbar - Fixed center of full page */}
+      <Navbar />
+
       {/* Left Pane - Fixed Profile Card */}
-      <div className="hidden lg:flex w-[420px] shrink-0 h-screen items-center justify-center p-8">
+      <div className="hidden lg:flex w-[40%] shrink-0 h-screen items-center justify-center p-4">
         <ProfileCard />
       </div>
 
       {/* Right Pane - Scrollable Content */}
-      <div className="flex-1 h-screen overflow-y-auto scroll-smooth" id="scroll-container">
-        <Navbar />
+      <div
+        className="flex-1 pr-12 h-screen overflow-y-auto scroll-smooth"
+        id="scroll-container"
+      >
         <HeroSection />
         <ProjectsSection />
         <ExperienceSection />
         <ToolsSection />
         <ThoughtsSection />
         <ContactSection />
-        <Footer />
       </div>
 
       {/* Floating Buttons */}
-      <FloatingButtons />
+      {/* <FloatingButtons /> */}
     </div>
   );
 };
